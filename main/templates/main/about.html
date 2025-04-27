@@ -1,0 +1,184 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="about-us-section">
+    <div class="container">
+        <!-- Team Section Header -->
+        <div class="about-us-header">
+            <h2 class="text-primary">Meet the Team</h2>
+            <p class="lead">Passionate minds behind the Air Quality Guide</p>
+        </div>
+
+        <!-- Team Member Cards -->
+        <div class="row justify-content-center">
+            <!-- Sarah's Card -->
+            <div class="col-md-6 col-lg-5 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <img src="{% static 'main/images/priya.jpg' %}" alt="Priya Sharma" class="rounded-circle mb-3" width="170" height="170">
+                        <h4 class="card-title">Priya Sharma</h4>
+                        <h6 class="text-primary">Co-Founder & Tech Lead</h6>
+                        <p class="card-text text-muted">
+                            Priya Sharma is a final-year Computer Science student at Lovely Professional University.
+                            She brings a strong passion for innovation and technology to every project.
+                            Priya has made key contributions to both research and implementation phases.
+                            Her efforts also extend to a patent submission tied to the project’s core features.
+                            With sharp vision and problem-solving skills, she’s been vital to the project's success.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Michael's Card -->
+            <div class="col-md-6 col-lg-5 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <img src="{% static 'main/images/ritwik.jpg' %}" alt="Ritwik Banerjee" class="rounded-circle mb-3" width="170" height="170">
+                        <h4 class="card-title">Ritwik Banerjee</h4>
+                        <h6 class="text-primary">Co-Founder & Tech Lead</h6>
+                        <p class="card-text text-muted">
+                            Ritwik Banerjee is a final-year student at Lovely Professional University with a passion for software development and innovation.
+He has significantly contributed to the backend and system design of this project.
+Ritwik’s problem-solving mindset drives practical, real-world solutions.
+He played an active role in the writing of project’s patent development, highlighting his inventive capabilities.His decision making skills help's the team to win.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <br>
+
+        <!-- Newsletter Section -->
+        <div class="stay-updated-header mt-5 text-center">
+            <h3 class="stay-updated-title">Stay Updated</h3>
+            <p class="stay-updated-description">Subscribe to our newsletter for the latest updates and insights.</p>
+        </div>
+
+        <form class="subscribe-form d-flex flex-column flex-md-row justify-content-center align-items-center gap-2 px-3">
+            <input type="email" class="form-control mb-2 mb-md-0 subscribe-input" id="email" placeholder="Enter your email" required style="max-width: 400px;">
+            <button type="submit" class="btn ml-md-2" style="background-color: #007bff; color: white;">Subscribe</button>
+        </form>
+    </div>
+</section>
+<br><br>
+
+
+{% endblock %}
+
+{% block extra_style %}
+<style>
+/* Your custom styles as-is */
+
+.about-us-section {
+    padding: 50px 0;
+    background-color: #f8f9fa;
+}
+.about-us-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.team-member-card {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    margin-bottom: 20px;
+}
+.team-member-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+.team-member-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #343a40;
+}
+.team-member-title {
+    color: #007bff;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+.team-member-bio {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+@media (min-width: 768px) {
+    .team-member-card {
+        margin-bottom: 0;
+    }
+}
+.stay-updated-section {
+    padding: 60px 0;
+    background-color: #f2f2f2;
+    text-align: center;
+}
+.stay-updated-header {
+    margin-bottom: 20px;
+}
+.stay-updated-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #343a40;
+    margin-bottom: 10px;
+}
+.stay-updated-description {
+    color: #6c757d;
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
+.subscribe-form {
+    display: flex;
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+.subscribe-input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px 0 0 5px;
+    font-size: 1rem;
+    padding-left: 40px;
+}
+.button {
+    background: linear-gradient(135deg, #4169E1, #F0F0F5, #C3B1E1);
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 999px; /* pill shape */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(65, 105, 225, 0.2);
+}
+
+.button:hover {
+    background: linear-gradient(135deg, #365dcf, #e0e0ea, #bca5de);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(65, 105, 225, 0.3);
+}
+
+
+.input-icon {
+    position: relative;
+}
+.input-icon i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+}
+</style>
+{% endblock %}
+
+{% block scripts %}
+<!-- Optional JS scripts (already included in base.html or load externally if needed) -->
+{% endblock %}

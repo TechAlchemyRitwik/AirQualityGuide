@@ -1,0 +1,81 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% load static %}
+<html>
+<head><style>
+    .gradient-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  background: linear-gradient(to right, rgb(139, 75, 250), #7b7beb, #b35fa6, rgb(213, 210, 210));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+
+  /* For Firefox */
+  background-clip: text;
+  color: transparent;
+}
+
+
+  
+  .wave-footer-img {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1; /* Put it behind content */
+  }
+  </style></head>
+<body>
+<h1 class="gradient-text" >Welcome to Air Quality Guide</h1><br>
+<p class="text-center">Your companion for monitoring air quality and staying informed about health guidelines</p>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <div class="card text-center shadow">
+            <div class="card-body">
+                <h4 class="card-title">AQI Checker</h4>
+                <p>Check air quality of any city around the world.</p>
+                <a href="{% url 'aqi' %}" class="btn btn-primary">Check Air Quality</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- API Cards Section -->
+<div class="row justify-content-center mt-5 mb-5" id="api-section">
+    <div class="col-md-10">
+        <h4 class="text-center mb-4 fw-bold">APIs We Use</h4>
+        <div class="row g-4">
+            <!-- OpenWeather API Card -->
+            <div class="col-md-6">
+                <div class="card shadow h-100 text-center">
+                    <img src="{% static 'main/images/openweather_logo.png' %}" class="card-img-top p-3" alt="OpenWeather API Logo" style="height: 180px; object-fit: contain;">
+                    <div class="card-body">
+                        <h5 class="card-title">OpenWeather API</h5>
+                        <p class="card-text">Used to fetch real-time Air Quality Index (AQI) and weather data for cities around the world.</p>
+                        <a href="https://openweathermap.org/api" target="_blank" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cohere API Card -->
+            <div class="col-md-6">
+                <div class="card shadow h-100 text-center">
+                    <img src="{% static 'main/images/cohere.png' %}" class="card-img-top p-3" alt="Cohere API Logo" style="height: 180px; object-fit: contain;">
+                    <div class="card-body">
+                        <h5 class="card-title">Cohere API</h5>
+                        <p class="card-text">Used for natural language understanding, powering summaries, insights, and smart responses from user inputs.</p>
+                        <a href="https://cohere.com/" target="_blank" class="btn btn-success">Explore Cohere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <img src="{% static 'main/images/seeeaarrr.png' %}" alt="Wave Footer" class="wave-footer-img">
+</footer>
+</body></html>
+{% endblock %}

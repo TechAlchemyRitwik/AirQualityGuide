@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">AQI Levels Explained</h2>
+    <table class="table table-bordered text-center">
+        <thead class="thead-dark">
+            <tr>
+                <th>Category</th>
+                <th>AQI Range</th>
+                <th>Health Implications</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Good</td>
+                <td>0–50</td>
+                <td>Air quality is satisfactory.</td>
+            </tr>
+            <tr>
+                <td>Moderate</td>
+                <td>51–100</td>
+                <td>Acceptable air quality. Some pollutants may affect very few sensitive individuals.</td>
+            </tr>
+            <tr>
+                <td>Unhealthy for Sensitive Groups</td>
+                <td>101–150</td>
+                <td>May affect sensitive groups like children and the elderly.</td>
+            </tr>
+            <tr>
+                <td>Unhealthy</td>
+                <td>151–200</td>
+                <td>Everyone may begin to experience health effects.</td>
+            </tr>
+            <tr>
+                <td>Very Unhealthy</td>
+                <td>201–300</td>
+                <td>Health alert: everyone may experience serious health effects.</td>
+            </tr>
+            <tr>
+                <td>Hazardous</td>
+                <td>301–500</td>
+                <td>Emergency conditions. The entire population is more likely to be affected.</td>
+            </tr>
+        </tbody>
+    </table><br><br>
+    <div class="blog-images" style="display: flex; flex-direction: column; align-items:center; gap: 20px; margin-top: 40px; width: 100%;">
+        <img src="{% static 'main/images/aqi_level.jpeg' %}" alt="Polluted City 1"
+             style="width: 100%; max-width: 800px; height: auto; aspect-ratio: 16/9;  object-fit: cover; border-radius: 10px;">
+    <br><br><br><br>
+</div><br><br><br><br><br><br><br><br>
+
+{% endblock %}

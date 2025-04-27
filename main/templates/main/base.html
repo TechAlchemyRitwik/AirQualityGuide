@@ -1,0 +1,191 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Air Quality Guide</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .a{
+            color: #ac80f2;
+        }
+        #chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            /* background: black; */
+            border-radius: 50%;
+            padding: 12px;
+            /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); */
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        #chatbot-button img {
+            width: 75px;
+            height: 75px;
+        }
+
+        #chatbot-window {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            height: 350px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+        }
+
+        #chatbox-messages {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        #chat-input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #aaa;
+            margin-bottom: 5px;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .site-footer {
+            background-color: #f8f9fa;
+            /* Adjust as needed */
+            padding: 20px;
+            /* Adjust padding as needed */
+            position: relative;
+            /* For absolute positioning of the wave */
+            overflow: hidden;
+            /* To contain the wave if necessary */
+        }
+
+        .footer-content {
+            display: flex;
+            /* Enable flexbox for alignment */
+            justify-content: space-between;
+            /* Push content to the edges */
+            align-items: center;
+            /* Vertically align items in the center */
+        }
+
+        .footer-content p {
+            margin: 0;
+            /* Remove default paragraph margins */
+        }
+        .wave-footer-container {
+  position: relative;
+  width: 70%;
+  overflow: hidden;
+  margin-top:199px; 
+  /* optional spacing above the wave */
+}
+
+.wave-footer-img {
+  width: 70%;
+  display: block;
+  object-fit: cover;
+}
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#" ><b>Air Quality Guide</b></a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'aqi' %}">AQI Checker</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'aqi_levels' %}">AQI Levels</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'blogs' %}"> Blogs</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}"> About</a></li>
+
+            </ul>
+        </div>
+    </nav>
+    
+
+    <div class="container mt-4">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Floating Chatbot Button -->
+    <div id="chatbot-button" onclick="toggleChatbot()">
+        <img src="{% static 'main/images/chatbot_bgr.png' %}" alt="Chat Icon" />
+    </div>
+
+    <!-- Hidden Chatbox -->
+    <div id="chatbot-window">
+        <div id="chatbox-messages"></div>
+        <input type="text" id="chat-input" placeholder="Ask me anything..." />
+        <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
+
+        <button onclick="sendChat()">Send</button>
+    </div>
+    {% load static %}
+
+<div class="wave-footer-container" style="position: relative;">
+<img src="{% static 'main/images/seeeaarrr.png' %}" alt="Wave Footer" class="wave-footer-img">
+</div>
+
+
+    <script>
+        function toggleChatbot() {
+            let box = document.getElementById("chatbot-window");
+            box.style.display = box.style.display === "none" ? "flex" : "none";
+        }
+
+        function sendChat() {
+            let input = document.getElementById("chat-input");
+            let message = input.value.trim();
+            if (!message) return;
+
+            let messages = document.getElementById("chatbox-messages");
+            messages.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
+            input.value = "";
+
+            let csrfToken = document.getElementById("csrf-token").value;
+
+            fetch("/chatbot/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrfToken
+                },
+                body: JSON.stringify({ message: message })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    messages.innerHTML += `<p><strong>Bot:</strong> ${data.response}</p>`;
+                    messages.scrollTop = messages.scrollHeight;
+                });
+        }
+
+    </script>
+    
+
+
+</body>
+
+</html>

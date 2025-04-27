@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-3">AQI Checker</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <input type="text" name="city" class="form-control" placeholder="Enter city" value="{{ request.POST.city }}">
+            <button class="btn btn-primary" type="submit">Check</button>
+        </div>
+    </form> <br><br><br><br><br><br><br>
+
+    {% if aqi %}
+        {% if aqi.error %}
+            <div class="alert alert-danger">{{ aqi.error }}</div>
+        {% else %}
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">Air Quality Index: {{ aqi.list.0.main.aqi }} ({{ aqi_level }})</h5>
+                    <p><strong>PM2.5:</strong> {{ aqi.list.0.components.pm2_5 }} µg/m³</p>
+                    <p><strong>PM10:</strong> {{ aqi.list.0.components.pm10 }} µg/m³</p>
+                    <p><strong>CO:</strong> {{ aqi.list.0.components.co }} µg/m³</p>
+                    <p><strong>NO<sub>2</sub>:</strong> {{ aqi.list.0.components.no2 }} µg/m³</p>
+                    <p><strong>O<sub>3</sub>:</strong> {{ aqi.list.0.components.o3 }} µg/m³</p>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}
