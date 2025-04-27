@@ -18,7 +18,7 @@ The **Air Quality Index (AQI)** is a numerical scale that communicates the level
 To use this application locally, follow these steps:
 
 1. Clone the repository:
- git clone https://github.com/Priya2003/airqualityguide
+ git clone https://github.com/TechAlchemyRitwik/AirQualityGuide
 
 2.Navigate into the project directory:
 cd air-quality-guide
